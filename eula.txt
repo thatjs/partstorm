@@ -1,0 +1,88 @@
+Partstorm's End User License Agreement
+
+This document is a legal agreement (the "Agreement") between Partstorm ("We,"Us") and you or the organization on whose behalf you are undertaking the license described below ("You") in relation to Partstorm software (the "Software"), in both source and object code form, and/or all related materials. By downloading, installing, copying or otherwise using the software, you accept the following terms and conditions. If you do not agree with any of the terms or conditions of this License Agreement, do not continue with the download, copying, installation or any other use of the software or any portion thereof. The Software is protected by copyright laws in the United States and internationally, as well as other intellectual property laws and treaties. The Software is licensed, not sold.
+
+This License Agreement describes your rights with respect to the software and its components.
+
+We, Partstorm grant you a non-exclusive, non-transferable license to the software solely as set forth in sections 1.1 and 1.2, as applicable, and subject to the terms and conditions of this License Agreement.
+
+1. Ownership, Grant of License.
+
+This is a License Agreement and not an agreement for sale. This License applies to any original work of authorship (the "original Software") whose owner (the "Licensor") has placed the following licensing notice adjacent to the copyright notice for the original Software:
+
+Licensed under the Partstorm End User License Agreement (the "Partstorm EULA"), or
+License: eula.txt
+
+We reserve ownership of all intellectual property rights inherent in or relating to the original Software, which include, but are not limited to, all copyright, patent rights, all rights in relations to registered and unregistered trademarks (including service marks), confidential information (including trade secrets and know-how) and all rights other than those expressly granted by this License Agreement.
+
+1.1 Non-Commercial License Grant.
+
+Without payment of royalty for unlimited Personal Use or Non-Commercial Distribution.
+
+1.2 Commercial License Grant.
+
+Subject to the payment of one-time paid-up Royalty Fee for other than Personal Use and Non-Commercial Distribution as specified in Section 4 on the Designated Website. Royalty Fees to run the Software on additional Websites are due and payable to Licensor prior to first use on those Websites. This license is not sub-licenseable except as explicitly set forth herein.
+
+2. Grant of Source Code
+
+We provide You with source code so that you can create Modifications of the original Software, where Modifications means: a) any addition to or deletion from the contents of a file included in the original Software or previous Modifications create by You, or b) any new file that contain any part of the original Software or previous Modifications. While You retain all rights to any original work authored by you as part of the Modifications, we continue to own all copyright and other intellectual property rights in the Software.
+
+3. Exclusions from License Grant
+
+The Licensor, nor the names of any contributors to the original Software, nor any of their trademarks or service marks, may be used to endorse or promote products derived from this original Software without express prior permission of the Licensor. Except as expressly stated herein, nothing in this License grants any license to Licensor's trademarks, copyrights, patents, trade secrets or any other intellectual property. No license is granted to the trademarks of Licensor even if such marks are included in the original Software. Nothing in this License shall be interpreted to prohibit Licensor from licensing under terms different from this License any original Software that Licensor otherwise would have a right to license.
+
+4. External Deployment
+
+The term "External Deployment" means the use, distribution, or communication of the original Software or Derivative Works in any way such that the original Software or Derivative Works may be used by anyone other than You, whether those works are distributed or communicated to those persons or made available as an application intended for use over a network. You are hereby given permission to distribute the original Software or Derivative Works with Non-Commercial packages only under the following conditions.
+
+4.1 Clearly indicate to your customers and/or end users that Partstorm software is not free for commercial use.
+
+4.2 Include a prominent link in your Software to the Partstorm website.
+
+4.3 You are required to ensure that the original Software or Derivative Works are not reused by or with any application other than those with which you distribute.
+
+5. Prohibited Use
+
+You may not, without prior written consent of Partstorm redistribute the original Software, Modifications or Derivative Works for commercial use. You will not change or remove the copyright notice from any of the files included in the original Software, Modifications or Derivative Works.
+
+6. Attribution Rights.
+
+You must retain, in the Source Code of any Modifications or Derivative Works that You create, all copyright, or trademark notices from the Source Code of the original Software, as well as any notices of licensing and any descriptive text identified therein as an "Attribution Notice." You must cause the Source Code for any Modifications or Derivative Works that You create to carry a prominent Attribution Notice reasonably calculated to inform recipients that You have modified the original Software.
+
+7. Disclaimer of Warranty.
+
+Licensor warrants that the copyright in and to the original Software herein by Licensor are owned by the Licensor or are sublicensed to You under the terms of this License with the permission of the contributor(s) of those copyrights. Except as expressly stated in the immediately preceding sentence, the original Software is provided under this License on an "AS IS" BASIS and WITHOUT WARRANTY, either express or implied, including, without limitation, the warranties of non-infringement, merchantability or fitness for a particular purpose. THE ENTIRE RISK AS TO THE QUALITY OF THE ORIGINAL WORK IS WITH YOU. This DISCLAIMER OF WARRANTY constitutes an essential part of this License. No license to the original Software is granted by this License except under this disclaimer.
+
+8. Limitation of Liability.
+
+Under no circumstances and under no legal theory, whether in tort (including negligence), contract, or otherwise, shall the Licensor be liable to anyone for any indirect, special, incidental, or consequential damages of any character arising as a result of this License or the use of the original Software including, without limitation, damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses. This limitation of liability shall not apply to the extent applicable law prohibits such limitation.
+
+9. Acceptance and Termination.
+
+If, at any time, You expressly assented to this License, that assent indicates your clear and irrevocable acceptance of this License and all of its terms and conditions. If You distribute or communicate copies of the original Software, Modifications or a Derivative Work pursuant to Section 5. You must make a reasonable effort under the circumstances to obtain the express assent of recipients to the terms of this License. This License conditions your rights to undertake the activities listed in Section 1, including your right to create Derivative Works based upon the original Software, and doing so without honoring these terms and conditions is prohibited by copyright law and international treaty. Nothing in this License is intended to affect copyright exceptions and limitations (including 'fair use' or 'fair dealing'). This License shall terminate immediately and You may no longer exercise any of the rights granted to You by this License upon your failure to honor the conditions in Section 1.1 or 1.2.
+
+10. Jurisdiction, Venue and Governing Law.
+
+Any action or suit relating to this License may be brought only in the courts of a jurisdiction wherein the Licensor resides or in which Licensor conducts its primary business, and under the laws of that jurisdiction excluding its conflict-of-law provisions. The application of the United Nations Convention on Contracts for the International Sale of Goods is expressly excluded. Any use of the original Software outside the scope of this License or after its termination shall be subject to the requirements and penalties of copyright or patent law in the appropriate jurisdiction. This section shall survive the termination of this License.
+
+11. Attorneys' Fees.
+
+In any action to enforce the terms of this License or seeking damages relating thereto, the prevailing party shall be entitled to recover its costs and expenses, including, without limitation, reasonable attorneys' fees and costs incurred in connection with such action, including any appeal of such action. This section shall survive the termination of this License.
+
+12. Miscellaneous.
+
+If any provision of this License is held to be unenforceable, such provision shall be reformed only to the extent necessary to make it enforceable.
+
+13. Definitions.
+
+"Authorized User" means, for each Software license, an employee, agent, or consultant of Licensee that is authorized by Licensee to use the Licensed Software on the Designated Website.
+
+"Commercial" means, primarily intended for or directed toward generating revenue or cash flow of any type from products or services sold.
+
+"Personal Use" means, you are allowed to install and use the Software on a personal website, family website, school website or similar non-profit website.
+
+"Non-Commercial" means, without primary intention for or directed toward commercial advantage or private monetary compensation.
+
+"Designated Website" means, each Software license entitles the Licensee to install the Software on a single website defined as a unique Internet domain name owned by the Licensee. If you operate multiple websites or domain names, multiple licenses will be required for each website. If the Designated Website sells hosting services, then each of the Licensee's clients must purchase individual Licenses to use the Software.
+
+"You" whether in upper or lower case, means an individual or a legal entity exercising rights under, and complying with all of the terms of this License.
