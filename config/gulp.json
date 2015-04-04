@@ -1,0 +1,17 @@
+{
+
+    "jslint": {
+        "predef": ["$","angular","jasmine","describe","it","xdescribe","xit","spyOn","beforeEach","afterEach","expect"],
+        "browser": true,
+        "continue": true,
+        "maxlen": 150,
+        "nomen": true,
+        "plusplus": true,
+        "regex": true,
+        "sloppy": true,
+        "todo": true,
+        "unparam": true,
+        "vars": true
+    }
+
+}

@@ -1,0 +1,18 @@
+{
+
+    "themes": [
+        { "name": "orange", "baseColor": "#ff552a" },
+        { "name": "yellow", "baseColor": "#ffcc25" },
+        { "name": "green", "baseColor": "#27ff85" },
+        { "name": "auqa", "baseColor": "#27ffbe" },
+        { "name": "blue-light", "baseColor": "#21b5ff" },
+        { "name": "blue", "baseColor": "#235eff" },
+        { "name": "purple", "baseColor": "#5f25ff" },
+        { "name": "red", "baseColor": "#ff1b26" }
+    ],
+
+    "karma": {
+        "configFile": "karma.conf.js"
+    }
+
+}
