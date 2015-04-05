@@ -4,9 +4,11 @@
 //
 
 
-var nPath = require('path'),
+var startTime = +new Date(),
+    nPath = require('path'),
 
     gulp = require('gulp'),
+    gulpSync = require('gulp-sync')(gulp),
     gUtil = require('gulp-util'),
     clean = require('gulp-clean'),
     concat = require('gulp-concat'),
@@ -28,3 +30,22 @@ var buildDest = 'target/build',
     cssDest = path.css;
 
 var config = require('./config/gulp');
+
+
+// gulp task definitions
+// =====================
+
+gulp.task('totalTime', function () {
+    var c = gUtil.colors,
+        totalTime = new Date(+new Date() - startTime).getTime() / 1000;
+    gUtil.log('=== gulp total time: ' + c.green(totalTime) + ' secs ===');
+    return gUtil.noop();
+});
+
+gulp.task('build', ['totalTime']);
+
+
+// public gulp API
+// ===============
+
+gulp.task('default', [])

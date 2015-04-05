@@ -1,0 +1,32 @@
+{
+  "name": "Partstorm",
+  "description": "Partstorm build with GulpJs",
+  "dependencies": {
+    "event-stream": "^3.3.0",
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-jslint": "^0.2.2",
+    "gulp-karma": "0.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sync": "^0.1.4",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.4",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "*",
+    "karma-cli": "*",
+    "karma-coverage": "*",
+    "karma-firefox-launcher": "*",
+    "karma-ie-launcher": "*",
+    "karma-jasmine": "*",
+    "karma-phantomjs-launcher": "*",
+    "karma-safari-launcher": "*"
+  },
+  "engines": {
+    "node": "~0.8 || ~0.10"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.5.2",
+    "merge-stream": "^0.1.7"
+  }
+}
