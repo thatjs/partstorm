@@ -26,328 +26,326 @@
 /* Partstorm Namespace: pt */
 var pt = {
 
-  /** @var oBrowser [object] boolean values
-   * @access public
-   * @link http://www.prototypejs.org
-   * @desc Simple feature detection derived from Prototype JS.
-   */
-  oBrowser : {
-    ie : ((document.all != undefined) && !window.opera),
-    firefox : navigator.userAgent.indexOf("Firefox") != -1,
-    opera   : !!window.opera,
-    safari  : navigator.userAgent.indexOf("Safari") != -1
-  },
+    /** @var oBrowser [object] boolean values
+     * @access public
+     * @link http://www.prototypejs.org
+     * @desc Simple feature detection derived from Prototype JS.
+     */
+    oBrowser: {
+        ie: ((document.all !== undefined) && !window.opera),
+        firefox: navigator.userAgent.indexOf("Firefox") !== -1,
+        opera: !!window.opera,
+        safari: navigator.userAgent.indexOf("Safari") !== -1
+    },
 
-  /** @var oDom [object] boolean values
-   * @access public
-   * @desc Simple dom feature detection to support setting style attributes. Notation !!
-   * ensures boolean instead of an object or undefined values. Required by pt._$ and
-   * pt.setStyles methods.
-   */
-  oDom : {
-    isID     : (!!document.getElementById),
-    isAll    : (!!document.all),
-    isLayers : ((navigator.appName.indexOf('Netscape') != -1) && (parseInt(navigator.appVersion) == 4))
-  },
+    /** @var oDom [object] boolean values
+     * @access public
+     * @desc Simple dom feature detection to support setting style attributes. Notation !!
+     * ensures boolean instead of an object or undefined values. Required by pt._$ and
+     * pt.setStyles methods.
+     */
+    oDom: {
+        isID: (!!document.getElementById),
+        isAll: (!!document.all),
+        isLayers: ((navigator.appName.indexOf('Netscape') !== -1) && (parseInt(navigator.appVersion, 10) === 4))
+    },
 
-  /** function pt.extend(oSubClass,oSuperClass) classical inheritance
-   * @access public
-   * @param [oSubClass] new object
-   * @param [oSuperClass] object being extended
-   * @link http://www.jsdesignpatterns.com (page 44)
-   * @return [void]
-   * @desc In classical inheritance the new object's prototype is manually set to the prototype
-   * object of the superclass before any methods are added to the new object's prototype. The
-   * superclass attribute correctly points to the superclass.
-   */
-  extend : function(oSubClass,oSuperClass) {
-    var F = function() {};
-    F.prototype = oSuperClass.prototype;
-    oSubClass.prototype = new F();
-    oSubClass.prototype.constructor = oSubClass;
+    /** function pt.extend(oSubClass,oSuperClass) classical inheritance
+     * @access public
+     * @param [oSubClass] new object
+     * @param [oSuperClass] object being extended
+     * @link http://www.jsdesignpatterns.com (page 44)
+     * @return [void]
+     * @desc In classical inheritance the new object's prototype is manually set to the prototype
+     * object of the superclass before any methods are added to the new object's prototype. The
+     * superclass attribute correctly points to the superclass.
+     */
+    extend: function (oSubClass, oSuperClass) {
+        var F = function () {};
+        F.prototype = oSuperClass.prototype;
+        oSubClass.prototype = new F();
+        oSubClass.prototype.constructor = oSubClass;
 
-    oSubClass.superclass = oSuperClass.prototype;
-    if (oSuperClass.prototype.constructor == Object.prototype.constructor) {
-      oSuperClass.prototype.constructor = oSuperClass;
-    }
-  },
-
-  /** function pt.$id(sId)
-   * @access public
-   * @param [sId] string
-   * @return [object||aObjects]
-   * @desc Retrieve parent document element from its id string attribute. If more than one
-   * argument is passed to the function, return an array of elements. Calls the private
-   * method pt._$(sId) which handles browser differences.
-   */
-  $id : function(sId) {
-    if (arguments.length === 1) {
-      return pt._$(sId);
-    } else {
-      var aElements = [], nLen = arguments.length;
-      for (var i=0;i<nLen;i++) {
-        if (typeof arguments[i] === 'string') {
-          aElements.push(pt._$(arguments[i]));
+        oSubClass.superclass = oSuperClass.prototype;
+        if (oSuperClass.prototype.constructor === Object.prototype.constructor) {
+            oSuperClass.prototype.constructor = oSuperClass;
         }
-      }
-      return aElements;
-    }
-  },
+    },
 
-  /** function pt.$tag(sTag,oObject)
-   * @access public
-   * @param sTag [string]
-   * @param oObject [object]
-   * @return [array,false]
-   * @desc Return elements by their html tag, either from the document or within another page
-   * element passed to the function.
-   */
-  $tag : function(sTag,oObject) {
-    return (arguments.length == 2) ? oObject.getElementsByTagName(sTag) : document.getElementsByTagName(sTag);
-  },
-
-  /** function pt.$addEvent(oElement,sEvent,oFunction,oBinding)
-   * @access public
-   * @param oElement,oBinding [object]
-   * @param sEvent [string]  (root event name: click, mouseover)
-   * @param oFunction [function]
-   * @return [boolean]
-   * @desc Facade method for pt.stormEvent.addBrowserListener() method.
-   */
-  $addEvent : function(oElement,sEvent,oFunction,oBinding) {
-    return pt.stormEvent.addBrowserListener(oElement,sEvent,oFunction,oBinding);
-  },
-
-  /** function pt.$removeEvent(oElement,sEvent,oFunction,oBinding)
-   * @access public
-   * @return [boolean]
-   * @desc Facade method for pt.stormEvent.removeBrowserListener() method.
-   */
-  $removeEvent : function(oElement,sEvent,oFunction,oBinding) {
-    return pt.stormEvent.removeBrowserListener(oElement,sEvent,oFunction,oBinding);
-  },
-
-  /** function pt.$updateEvent(oElement,sEvent,oFunction,oBinding)
-   * @access public
-   * @param oElement,{oBinding} [object]
-   * @param sEvent [string]  (root event name: click, mouseover)
-   * @param oFunction [function]
-   * @return [boolean]
-   * @desc Facade method to first remove functions assigned to an event, then add
-   * the new event. Necessary for the pt.stormEvent object, where a DOM object can
-   * receive multiple functions for the same event (click,mouseover) and clobbering
-   * is prevented.
-   *
-   * Dropped support for oBinding.
-   */
-  $updateEvent : function(oElement,sEvent,oFunction) {
-    pt.stormEvent.removeBrowserListener(oElement,sEvent);
-    pt.stormEvent.addBrowserListener(oElement,sEvent,oFunction);
-  },
-
-  /** function pt.$addLoadEvent(oFunction)
-   * @access public
-   * @param oFunction [function]
-   * @return [void]
-   * @desc Facade method for pt.stormEvent.addLoadEvent() method.
-   */
-  $addLoadEvent : function(oFunction) {
-    pt.stormEvent.addLoadEvent(oFunction);
-  },
-
-  /** function pt.createElement(sTag,oAttribs,oStyles,oParent,sNS)
-   * @access public
-   * @param sTag     [string]
-   * @param oAttribs [object]
-   * @param oStyles  [object]
-   * @param oParent  [object]
-   * @param sNS      [string] namespace vocabulary
-   * @return [object]
-   * @desc Create an element from a namespace or a regular html element
-   * and append it to the dom if oParent is passed. Return the new element.
-   */
-  createElement : function(sTag,oAttribs,oStyles,oParent,sNS) {
-    var oElem = (sNS) ? document.createElementNS(sNS,sTag) : document.createElement(sTag);
-    if (oAttribs) pt.setAttribute(oElem,oAttribs,sNS);
-    if (oStyles) pt.setStyles(oElem,oStyles);
-    if (oParent) oParent.appendChild(oElem);
-    return oElem;
-  },
-
-  /** createTextNode : function(sText,oParent)
-   * @access public
-   * @param sText [string]
-   * @param oParent [object]
-   * @return [object]
-   * @desc Create a text node and return it. Append to the dom if oParent
-   * is passed.
-   */
-  createTextNode : function(sText,oParent) {
-    var oNode = document.createTextNode(sText);
-    if (oParent) oParent.appendChild(oNode);
-    return oNode;
-  },
-
-  /** function pt.getAttribute(oElement,oAttrib,sNS)
-   * @access public
-   * @param oElement [object]
-   * @param oAttrib  [object]
-   * @param sNS      [string] namespace vocabulary
-   * @return [object]
-   * @desc Get an element's html attribute(s). If sNS is set, then call
-   * getAttributeNS, passing null as the first value. oAttrib expects an object
-   * formatted as 'attributeName:null' which will return the same object, with
-   * the value for that attribute. Multiple attributes delimited by commas.
-   * Changed the assignment. Do not modify oAttrib null value, if attribute exists
-   * but is empty.
-   * Usage:
-   *   pt.getAttribute(oElement,{stroke:null},ns).stroke = newColor;
-   *   var oAttr = pt.getAttribute(oElement,{stroke:null,"stroke-width":null},ns);
-   *     returns { stroke:orange, stroke-width:1 }
-   */
-  getAttribute : function(oElement,oAttrib,sNS) {
-    if (sNS) {
-      for (var item in oAttrib) {
-        oAttrib[item] = oElement.getAttributeNS(null,item);
-      }
-    }
-    else {
-      for (var item in oAttrib) {
-        if (oElement[item] != '') {
-          oAttrib[item] = (pt.oBrowser.ie) ? oElement[item] : oElement.getAttribute(item);
+    /** function pt.$id(sId)
+     * @access public
+     * @param [sId] string
+     * @return [object||aObjects]
+     * @desc Retrieve parent document element from its id string attribute. If more than one
+     * argument is passed to the function, return an array of elements. Calls the private
+     * method pt._$(sId) which handles browser differences.
+     */
+    $id: function (sId) {
+        var aElements = [],
+            nLen = arguments.length,
+            i;
+        if (arguments.length === 1) {
+            aElements = pt._$(sId);
+        } else {
+            for (i = 0; i < nLen; i++) {
+                if (typeof arguments[i] === 'string') {
+                    aElements.push(pt._$(arguments[i]));
+                }
+            }
         }
-      }
-    }
-    return oAttrib;
-  },
+        return aElements;
+    },
 
-  /** function pt.setAttribute(oElement,oAttribs,sNS)
-   * @access public
-   * @param oElement [object]
-   * @param oAttribs [object]
-   * @param sNS      [string] namespace vocabulary
-   * @return [void]
-   * @desc Set an element's html attributes. If sNS is set, then call
-   * setAttributeNS, passing null to the first parameter, because
-   * passing sNS will not allow any attributes to be set.
-   */
-  setAttribute : function(oElement,oAttribs,sNS) {
-    if (sNS) {
-      for (var item in oAttribs) {
-        oElement.setAttributeNS(null,item,oAttribs[item]);
-      }
-    }
-    else {
-      for (var item in oAttribs) {
-        oElement[item] = oAttribs[item];
-      }
-    }
+    /** function pt.$tag(sTag, oObject)
+     * @access public
+     * @param sTag [string]
+     * @param oObject [object]
+     * @return [array,false]
+     * @desc Return elements by their html tag, either from the document or within another page
+     * element passed to the function.
+     */
+    $tag: function (sTag, oObject) {
+        return (arguments.length == 2) ? oObject.getElementsByTagName(sTag) : document.getElementsByTagName(sTag);
+    },
 
-  },
+    /** function pt.$addEvent(oElement, sEvent, oFunction, oBinding)
+     * @access public
+     * @param oElement,oBinding [object]
+     * @param sEvent [string]  (root event name: click, mouseover)
+     * @param oFunction [function]
+     * @return [boolean]
+     * @desc Facade method for pt.stormEvent.addBrowserListener() method.
+     */
+    $addEvent: function (oElement, sEvent, oFunction, oBinding) {
+        return pt.stormEvent.addBrowserListener(oElement, sEvent, oFunction, oBinding);
+    },
 
-  /** function pt.getNodeText(oNode)
-   * @access public
-   * @param oNode [object]
-   * @return [string]
-   * @desc Different major browsers implement accessing the textNode differently, return the
-   * value that exists.
-   * Usage:
-   *   pt.getNodeText(oParent.childNodes[1]);
-   */
-  getNodeText : function(oNode) {
-    return (oNode.textContent || oNode.innerText) || oNode.innerHTML;
-  },
+    /** function pt.$removeEvent(oElement, sEvent, oFunction, oBinding)
+     * @access public
+     * @return [boolean]
+     * @desc Facade method for pt.stormEvent.removeBrowserListener() method.
+     */
+    $removeEvent: function (oElement, sEvent, oFunction, oBinding) {
+        return pt.stormEvent.removeBrowserListener(oElement, sEvent, oFunction, oBinding);
+    },
 
-  /** function pt.getKeys(aSource)
-   * @access public
-   * @param aSource [array]
-   * @return [array]
-   */
-  getKeys : function(aSource) {
-    var aResult = [];
-    for (var item in aSource) {
-      aResult.push(item);
-    }
-    return aResult;
-  },
+    /** function pt.$updateEvent(oElement, sEvent, oFunction, oBinding)
+     * @access public
+     * @param oElement,{oBinding} [object]
+     * @param sEvent [string]  (root event name: click, mouseover)
+     * @param oFunction [function]
+     * @return [boolean]
+     * @desc Facade method to first remove functions assigned to an event, then add
+     * the new event. Necessary for the pt.stormEvent object, where a DOM object can
+     * receive multiple functions for the same event (click,mouseover) and clobbering
+     * is prevented.
+     *
+     * Dropped support for oBinding.
+     */
+    $updateEvent: function (oElement, sEvent, oFunction) {
+        pt.stormEvent.removeBrowserListener(oElement, sEvent);
+        pt.stormEvent.addBrowserListener(oElement, sEvent, oFunction);
+    },
 
-  /** function pt.setVar(sType)
-   * @access public
-   * @param sType [string]
-   * @return [void]
-   */
-  setVar : function(sType) {
-    var sAppType = sType;
-  },
+    /** function pt.$addLoadEvent(oFunction)
+     * @access public
+     * @param oFunction [function]
+     * @return [void]
+     * @desc Facade method for pt.stormEvent.addLoadEvent() method.
+     */
+    $addLoadEvent: function (oFunction) {
+        pt.stormEvent.addLoadEvent(oFunction);
+    },
 
-  /** function pt.deleteNode(oNode)
-   * @access public
-   * @param oNode [object]
-   * @author http://www.josh-davis.org
-   * @desc Delete a node from the DOM tree after event listeners and any node children
-   * have been removed. ... not tested ...
-   */
-  deleteNode : function(oNode) {
-    if (oNode) {
-      pt.deleteChildren(oNode); //delete node's children
-      pt.stormEvent.removeBrowserListener(oNode);  // make sure this works without by passing object alone
-      if (typeof oNode.outerHTML !== 'undefined') {
-        oNode.outerHTML = ''; //prevent pseudo-leak in IE
-      }
-      else {
-        if (oNode.parentNode) {
-          oNode.parentNode.removeChild(oNode); //remove the node from the DOM tree
-          delete oNode; //clean up just to be sure
+    /** function pt.createElement(sTag, oAttribs, oStyles, oParent, sNS)
+     * @access public
+     * @param sTag     [string]
+     * @param oAttribs [object]
+     * @param oStyles  [object]
+     * @param oParent  [object]
+     * @param sNS      [string] namespace vocabulary
+     * @return [object]
+     * @desc Create an element from a namespace or a regular html element
+     * and append it to the dom if oParent is passed. Return the new element.
+     */
+    createElement: function (sTag, oAttribs, oStyles, oParent, sNS) {
+        var oElem = (sNS) ? document.createElementNS(sNS,sTag) : document.createElement(sTag);
+        if (oAttribs) pt.setAttribute(oElem, oAttribs, sNS);
+        if (oStyles) pt.setStyles(oElem, oStyles);
+        if (oParent) oParent.appendChild(oElem);
+        return oElem;
+      },
+
+    /** createTextNode: function(sText, oParent)
+     * @access public
+     * @param sText [string]
+     * @param oParent [object]
+     * @return [object]
+     * @desc Create a text node and return it. Append to the dom if oParent
+     * is passed.
+     */
+    createTextNode: function (sText, oParent) {
+        var oNode = document.createTextNode(sText);
+        if (oParent) oParent.appendChild(oNode);
+        return oNode;
+    },
+
+    /** function pt.getAttribute(oElement, oAttrib, sNS)
+     * @access public
+     * @param oElement [object]
+     * @param oAttrib  [object]
+     * @param sNS      [string] namespace vocabulary
+     * @return [object]
+     * @desc Get an element's html attribute(s). If sNS is set, then call
+     * getAttributeNS, passing null as the first value. oAttrib expects an object
+     * formatted as 'attributeName:null' which will return the same object, with
+     * the value for that attribute. Multiple attributes delimited by commas.
+     * Changed the assignment. Do not modify oAttrib null value, if attribute exists
+     * but is empty.
+     * Usage:
+     *   pt.getAttribute(oElement, {stroke:null}, ns).stroke = newColor;
+     *   var oAttr = pt.getAttribute(oElement, {stroke: null, "stroke-width": null}, ns);
+     *     returns { stroke:orange, stroke-width:1 }
+     */
+    getAttribute: function (oElement, oAttrib, sNS) {
+        if (sNS) {
+            for (var item in oAttrib) {
+                oAttrib[item] = oElement.getAttributeNS(null, item);
+            }
+        } else {
+            for (var item in oAttrib) {
+                if (oElement[item] != '') {
+                    oAttrib[item] = (pt.oBrowser.ie) ? oElement[item] : oElement.getAttribute(item);
+                }
+            }
         }
-      }
-    }
-  },
+        return oAttrib;
+    },
 
-  /** function pt.deleteChildren(oNode)
-   * @access public
-   * @param oNode [object]
-   * @author http://www.josh-davis.org
-   * @desc Loop through the children nodes and remove them. ... not tested ...
-   */
-  deleteChildren : function(oNode) {
-    if(oNode) {
-      var nLen = oNode.childNodes.length;
-      for (var i=0;i<=nLen;i++) {
-        var oChildNode = oNode.childNodes[i];
-        if (oChildNode.hasChildNodes()) { //if the child node has children then delete them first
-          pt.deleteChildren(oChildNode);
-          pt.stormEvent.removeBrowserListener(oChildNode); //remove listeners
-          if (typeof oChildNode.outerHTML !== 'undefined') {
-            oChildNode.outerHTML = ''; //prevent pseudo-leak in IE
-          }
-          else {
-            oNode.removeChild(oChildNode); //remove the child from the DOM tree
-            delete oChildNode; //clean up just to be sure
-          }
+    /** function pt.setAttribute(oElement, oAttribs, sNS)
+     * @access public
+     * @param oElement [object]
+     * @param oAttribs [object]
+     * @param sNS      [string] namespace vocabulary
+     * @return [void]
+     * @desc Set an element's html attributes. If sNS is set, then call
+     * setAttributeNS, passing null to the first parameter, because
+     * passing sNS will not allow any attributes to be set.
+     */
+    setAttribute: function (oElement, oAttribs, sNS) {
+        if (sNS) {
+            for (var item in oAttribs) {
+                oElement.setAttributeNS(null, item, oAttribs[item]);
+            }
+        } else {
+            for (var item in oAttribs) {
+                oElement[item] = oAttribs[item];
+            }
         }
-      }
+    },
+
+    /** function pt.getNodeText(oNode)
+     * @access public
+     * @param oNode [object]
+     * @return [string]
+     * @desc Different major browsers implement accessing the textNode differently, return the
+     * value that exists.
+     * Usage:
+     *   pt.getNodeText(oParent.childNodes[1]);
+     */
+    getNodeText: function (oNode) {
+        return (oNode.textContent || oNode.innerText) || oNode.innerHTML;
+    },
+
+    /** function pt.getKeys(aSource)
+     * @access public
+     * @param aSource [array]
+     * @return [array]
+     */
+    getKeys: function (aSource) {
+        var aResult = [];
+        for (var item in aSource) {
+            aResult.push(item);
+        }
+        return aResult;
+    },
+
+    /** function pt.setVar(sType)
+     * @access public
+     * @param sType [string]
+     * @return [void]
+     */
+    setVar: function (sType) {
+        var sAppType = sType;
+    },
+
+    /** function pt.deleteNode(oNode)
+     * @access public
+     * @param oNode [object]
+     * @author http://www.josh-davis.org
+     * @desc Delete a node from the DOM tree after event listeners and any node children
+     * have been removed. ... not tested ...
+     */
+    deleteNode: function (oNode) {
+        if (oNode) {
+            pt.deleteChildren(oNode); //delete node's children
+            pt.stormEvent.removeBrowserListener(oNode);  // make sure this works without by passing object alone
+
+            if (typeof oNode.outerHTML !== 'undefined') {
+                oNode.outerHTML = ''; //prevent pseudo-leak in IE
+            } else {
+                if (oNode.parentNode) {
+                    oNode.parentNode.removeChild(oNode); //remove the node from the DOM tree
+                    delete oNode; //clean up just to be sure
+                }
+            }
+        }
+    },
+
+    /** function pt.deleteChildren(oNode)
+     * @access public
+     * @param oNode [object]
+     * @author http://www.josh-davis.org
+     * @desc Loop through the children nodes and remove them. ... not tested ...
+     */
+    deleteChildren: function (oNode) {
+        if(oNode) {
+            var nLen = oNode.childNodes.length;
+            for (var i=0;i<=nLen;i++) {
+                var oChildNode = oNode.childNodes[i];
+                if (oChildNode.hasChildNodes()) { //if the child node has children then delete them first
+                    pt.deleteChildren(oChildNode);
+                    pt.stormEvent.removeBrowserListener(oChildNode); //remove listeners
+                    if (typeof oChildNode.outerHTML !== 'undefined') {
+                        oChildNode.outerHTML = ''; //prevent pseudo-leak in IE
+                    } else {
+                        oNode.removeChild(oChildNode); //remove the child from the DOM tree
+                        delete oChildNode; //clean up just to be sure
+                    }
+                }
+            }
+        }
+    },
+
+    /** open : function(oEvent)
+     * @access public
+     * @param [object] oEvent
+     * @return [void]
+     * @desc Facade method to open the stormPopup.
+     */
+    open: function (oEvent) {
+        pt.stormClient.actions.popup.open(oEvent);
+    },
+
+    /** close : function(oEvent)
+     * @access public
+     * @param [object] oEvent
+     * @return [void]
+     * @desc Facade method to close the stormPopup.
+     */
+    close: function (oEvent) {
+        pt.stormClient.actions.popup.close(oEvent);
     }
-  },
-
-  /** open : function(oEvent)
-   * @access public
-   * @param [object] oEvent
-   * @return [void]
-   * @desc Facade method to open the stormPopup.
-   */
-  open : function(oEvent) {
-    pt.stormClient.actions.popup.open(oEvent);
-  },
-
-  /** close : function(oEvent)
-   * @access public
-   * @param [object] oEvent
-   * @return [void]
-   * @desc Facade method to close the stormPopup.
-   */
-  close : function(oEvent) {
-    pt.stormClient.actions.popup.close(oEvent);
-  }
 
 };  // end pt
 
@@ -361,25 +359,25 @@ var pt = {
  * immediately and assigns the correct function supported in the browser.
  */
 pt._$ = (function() {
-  var isID = function(sId) {
-    return document.getElementById(sId);
-  };
-  var isAll = function(sId) {
-    return document.all[sId];
-  };
-  var isLayers = function(sId) {
-    return document.layers[sId];
-  };
+    var isID, isAll, isLayers;
 
-  if (pt.oDom.isID) {
-    return isID;
-  }
-  else if (pt.oDom.isAll) {
-    return isAll;
-  }
-  else if (pt.oDom.isLayers) {
-    return isLayers;
-  }
+    isID = function(sId) {
+        return document.getElementById(sId);
+    };
+    isAll = function(sId) {
+        return document.all[sId];
+    };
+    isLayers = function(sId) {
+        return document.layers[sId];
+    };
+
+    if (pt.oDom.isID) {
+        return isID;
+    } else if (pt.oDom.isAll) {
+        return isAll;
+    } else if (pt.oDom.isLayers) {
+        return isLayers;
+    }
 })();
 
 /**function pt.setStyles(oElement,oStyles) branched singleton

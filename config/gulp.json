@@ -12,6 +12,22 @@
         "todo": true,
         "unparam": true,
         "vars": true
-    }
+    },
+
+    "jsOrderedSrc": [
+        "ptc_config_dev.js",
+        "pt.js",
+        "ptact.js",
+        "pte.js",
+        "ptc_auto.js",
+        "ptc_vars.js",
+        "ptc_actions.js",
+        "ptc_data.js",
+        "ptc_init.js",
+        "ptm.js",
+        "ptmp.js",
+        "pt.js",
+        "ptsc.js"
+    ]
 
 }

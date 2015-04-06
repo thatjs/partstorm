@@ -1,3 +1,4 @@
+/*globals require */
 //
 // Project: Stormclient
 // Copyright 2015 Partstorm
@@ -27,13 +28,28 @@ var path = {
 
 var buildDest = 'target/build',
     jsSrc = path.js + '/**/*.js',
-    cssDest = path.css;
+    cssDest = path.css,
+    lintSrc = ['gulpfile.js', jsSrc];
 
 var config = require('./config/gulp');
 
 
 // gulp task definitions
 // =====================
+
+gulp.task('lint', function () {
+    return gulp.src(lintSrc)
+        .pipe(jslint(config.jslint));
+});
+
+gulp.task('build-js', function () {
+    return gulp.src(config.jsOrderedSrc)
+        .pipe(concat('stormclient.js'))
+        .pipe(gulp.dest(buildDest))
+        .pipe(uglify())
+        .pipe(rename({ extname: '.min.js'}))
+        .pipe(gulp.dest(buildDest));
+});
 
 gulp.task('totalTime', function () {
     var c = gUtil.colors,
@@ -42,10 +58,14 @@ gulp.task('totalTime', function () {
     return gUtil.noop();
 });
 
-gulp.task('build', ['totalTime']);
-
 
 // public gulp API
 // ===============
 
-gulp.task('default', [])
+gulp.task('build', gulpSync.sync([
+    // 'lint',
+    'build-js',
+    'totalTime'
+]));
+
+gulp.task('default', ['build']);

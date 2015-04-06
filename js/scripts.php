@@ -14,7 +14,7 @@
  * file order. Remember to update the index id when adding files.
  *
  * Stormclient global software version is read from:
- * partstorm.net/public_html/includes/var/config/products/stormclient/scConfig.php
+ * localhost/public_html/includes/var/config/products/stormclient/scConfig.php
  *
  * Format: index key => array(filename => charset)
  *
@@ -25,7 +25,7 @@
  * 3. pt_vars.js was not needed, all Stormclient variables were moved to ptc_vars.js
  * 4. pta.js (ajax) removed until needed in the future.
  * 5. ptc or ptc_auto, not both. Contain event handler methods. Autodetect for the first tag.
- * 6. To debug Javascript on partstorm.server/net, append ?bDebug=true which permits access
+ * 6. To debug Javascript on localhost, append ?bDebug=true which permits access
  *    to the individual source files. Tested in Firebug and IE Development Toolbar.
  */
 
