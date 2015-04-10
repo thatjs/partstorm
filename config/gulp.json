@@ -11,6 +11,7 @@
         "sloppy": true,
         "todo": true,
         "unparam": true,
+        "white": true,
         "vars": true
     },
 
